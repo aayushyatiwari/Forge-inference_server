@@ -1,0 +1,231 @@
+2026-05-09 17:10:01,989 | INFO     | __main__ | MainThread | Starting Forge Inference Server
+2026-05-09 17:10:01,990 | INFO     | scheduler | MainThread | Initialized Scheduler with aging_rate=0.2
+2026-05-09 17:10:01,990 | INFO     | worker | WorkerThread-1 | Worker 1 started
+2026-05-09 17:10:01,990 | INFO     | __main__ | MainThread | Started worker thread 1
+2026-05-09 17:10:01,990 | INFO     | worker | WorkerThread-2 | Worker 2 started
+2026-05-09 17:10:01,991 | INFO     | __main__ | MainThread | Started worker thread 2
+2026-05-09 17:10:01,991 | INFO     | worker | WorkerThread-3 | Worker 3 started
+2026-05-09 17:10:01,991 | INFO     | __main__ | MainThread | Started worker thread 3
+2026-05-09 17:10:01,991 | INFO     | scheduler | AgingThread | Aging thread started
+2026-05-09 17:10:01,991 | INFO     | __main__ | MainThread | Started aging thread
+2026-05-09 17:10:02,090 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 0 (priority=2, currPriority=2.00, waited=0.10s)
+2026-05-09 17:10:02,091 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 2 (priority=2, currPriority=2.00, waited=0.05s)
+2026-05-09 17:10:02,091 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 1 (priority=1, currPriority=1.00, waited=0.10s)
+2026-05-09 17:10:02,591 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 0 in 0.50s
+2026-05-09 17:10:02,591 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 2 in 0.50s
+2026-05-09 17:10:02,592 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 1 in 0.50s
+2026-05-09 17:10:02,592 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 3 (priority=2, currPriority=2.40, waited=0.50s)
+2026-05-09 17:10:02,592 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 4 (priority=2, currPriority=2.40, waited=0.45s)
+2026-05-09 17:10:02,593 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 5 (priority=2, currPriority=2.40, waited=0.40s)
+2026-05-09 17:10:03,093 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 3 in 0.50s
+2026-05-09 17:10:03,093 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 4 in 0.50s
+2026-05-09 17:10:03,094 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 6 (priority=2, currPriority=2.80, waited=0.85s)
+2026-05-09 17:10:03,094 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 7 (priority=2, currPriority=2.80, waited=0.80s)
+2026-05-09 17:10:03,094 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 5 in 0.50s
+2026-05-09 17:10:03,095 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 8 (priority=2, currPriority=2.80, waited=0.75s)
+2026-05-09 17:10:03,595 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 7 in 0.50s
+2026-05-09 17:10:03,595 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 9 (priority=2, currPriority=3.20, waited=1.20s)
+2026-05-09 17:10:03,595 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 6 in 0.50s
+2026-05-09 17:10:03,595 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 8 in 0.50s
+2026-05-09 17:10:03,596 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 10 (priority=2, currPriority=3.20, waited=1.15s)
+2026-05-09 17:10:03,596 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 11 (priority=2, currPriority=3.20, waited=1.10s)
+2026-05-09 17:10:04,096 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 9 in 0.50s
+2026-05-09 17:10:04,096 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 13 (priority=2, currPriority=3.60, waited=1.55s)
+2026-05-09 17:10:04,097 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 10 in 0.50s
+2026-05-09 17:10:04,097 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 11 in 0.50s
+2026-05-09 17:10:04,097 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 14 (priority=2, currPriority=3.40, waited=1.50s)
+2026-05-09 17:10:04,098 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 15 (priority=2, currPriority=3.40, waited=1.45s)
+2026-05-09 17:10:04,597 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 13 in 0.50s
+2026-05-09 17:10:04,597 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 16 (priority=2, currPriority=4.00, waited=1.90s)
+2026-05-09 17:10:04,598 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 14 in 0.50s
+2026-05-09 17:10:04,598 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 17 (priority=2, currPriority=4.00, waited=1.85s)
+2026-05-09 17:10:04,598 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 15 in 0.50s
+2026-05-09 17:10:04,598 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 18 (priority=2, currPriority=3.80, waited=1.80s)
+2026-05-09 17:10:05,097 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 16 in 0.50s
+2026-05-09 17:10:05,098 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 19 (priority=2, currPriority=4.20, waited=2.25s)
+2026-05-09 17:10:05,098 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 17 in 0.50s
+2026-05-09 17:10:05,098 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 18 in 0.50s
+2026-05-09 17:10:05,099 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 20 (priority=2, currPriority=4.20, waited=2.20s)
+2026-05-09 17:10:05,099 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 21 (priority=2, currPriority=4.20, waited=2.15s)
+2026-05-09 17:10:05,598 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 19 in 0.50s
+2026-05-09 17:10:05,598 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 22 (priority=2, currPriority=4.60, waited=2.60s)
+2026-05-09 17:10:05,600 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 20 in 0.50s
+2026-05-09 17:10:05,600 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 24 (priority=2, currPriority=4.60, waited=2.56s)
+2026-05-09 17:10:05,600 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 21 in 0.50s
+2026-05-09 17:10:05,600 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 25 (priority=2, currPriority=4.60, waited=2.50s)
+2026-05-09 17:10:06,099 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 22 in 0.50s
+2026-05-09 17:10:06,099 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 26 (priority=2, currPriority=5.00, waited=2.95s)
+2026-05-09 17:10:06,100 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 24 in 0.50s
+2026-05-09 17:10:06,100 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 27 (priority=2, currPriority=4.80, waited=2.90s)
+2026-05-09 17:10:06,100 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 25 in 0.50s
+2026-05-09 17:10:06,100 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 28 (priority=2, currPriority=4.80, waited=2.85s)
+2026-05-09 17:10:06,599 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 26 in 0.50s
+2026-05-09 17:10:06,599 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 29 (priority=2, currPriority=5.40, waited=3.30s)
+2026-05-09 17:10:06,600 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 27 in 0.50s
+2026-05-09 17:10:06,600 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 30 (priority=2, currPriority=5.40, waited=3.25s)
+2026-05-09 17:10:06,601 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 28 in 0.50s
+2026-05-09 17:10:06,601 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 31 (priority=2, currPriority=5.20, waited=3.20s)
+2026-05-09 17:10:07,009 | INFO     | __main__ | MainThread | Main loop finished adding jobs.
+2026-05-09 17:10:07,100 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 29 in 0.50s
+2026-05-09 17:10:07,100 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 32 (priority=2, currPriority=5.60, waited=3.65s)
+2026-05-09 17:10:07,101 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 30 in 0.50s
+2026-05-09 17:10:07,101 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 33 (priority=2, currPriority=5.60, waited=3.60s)
+2026-05-09 17:10:07,101 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 31 in 0.50s
+2026-05-09 17:10:07,101 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 35 (priority=2, currPriority=5.60, waited=3.55s)
+2026-05-09 17:10:07,600 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 32 in 0.50s
+2026-05-09 17:10:07,601 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 12 (priority=1, currPriority=6.20, waited=5.11s)
+2026-05-09 17:10:07,601 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 33 in 0.50s
+2026-05-09 17:10:07,601 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 36 (priority=2, currPriority=6.00, waited=4.00s)
+2026-05-09 17:10:07,601 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 35 in 0.50s
+2026-05-09 17:10:07,602 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 37 (priority=2, currPriority=6.00, waited=3.95s)
+2026-05-09 17:10:08,101 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 12 in 0.50s
+2026-05-09 17:10:08,101 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 38 (priority=2, currPriority=6.40, waited=4.40s)
+2026-05-09 17:10:08,101 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 36 in 0.50s
+2026-05-09 17:10:08,102 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 39 (priority=2, currPriority=6.40, waited=4.35s)
+2026-05-09 17:10:08,102 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 37 in 0.50s
+2026-05-09 17:10:08,102 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 40 (priority=2, currPriority=6.20, waited=4.30s)
+2026-05-09 17:10:08,601 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 38 in 0.50s
+2026-05-09 17:10:08,602 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 41 (priority=2, currPriority=6.80, waited=4.75s)
+2026-05-09 17:10:08,602 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 39 in 0.50s
+2026-05-09 17:10:08,602 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 40 in 0.50s
+2026-05-09 17:10:08,603 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 42 (priority=2, currPriority=6.80, waited=4.70s)
+2026-05-09 17:10:08,603 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 43 (priority=2, currPriority=6.80, waited=4.65s)
+2026-05-09 17:10:09,102 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 41 in 0.50s
+2026-05-09 17:10:09,102 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 44 (priority=2, currPriority=7.00, waited=5.10s)
+2026-05-09 17:10:09,104 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 42 in 0.50s
+2026-05-09 17:10:09,104 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 46 (priority=2, currPriority=7.00, waited=5.05s)
+2026-05-09 17:10:09,104 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 43 in 0.50s
+2026-05-09 17:10:09,104 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 47 (priority=2, currPriority=7.00, waited=5.01s)
+2026-05-09 17:10:09,603 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 44 in 0.50s
+2026-05-09 17:10:09,603 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 48 (priority=2, currPriority=7.60, waited=5.45s)
+2026-05-09 17:10:09,604 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 46 in 0.50s
+2026-05-09 17:10:09,604 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 23 (priority=1, currPriority=7.60, waited=6.61s)
+2026-05-09 17:10:09,605 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 47 in 0.50s
+2026-05-09 17:10:09,605 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 49 (priority=2, currPriority=7.40, waited=5.41s)
+2026-05-09 17:10:10,103 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 48 in 0.50s
+2026-05-09 17:10:10,103 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 50 (priority=2, currPriority=7.80, waited=5.85s)
+2026-05-09 17:10:10,105 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 23 in 0.50s
+2026-05-09 17:10:10,105 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 51 (priority=2, currPriority=7.80, waited=5.80s)
+2026-05-09 17:10:10,105 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 49 in 0.50s
+2026-05-09 17:10:10,105 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 52 (priority=2, currPriority=7.80, waited=5.76s)
+2026-05-09 17:10:10,604 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 50 in 0.50s
+2026-05-09 17:10:10,604 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 53 (priority=2, currPriority=8.20, waited=6.20s)
+2026-05-09 17:10:10,605 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 51 in 0.50s
+2026-05-09 17:10:10,605 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 54 (priority=2, currPriority=8.20, waited=6.15s)
+2026-05-09 17:10:10,606 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 52 in 0.50s
+2026-05-09 17:10:10,606 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 55 (priority=2, currPriority=8.20, waited=6.11s)
+2026-05-09 17:10:11,104 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 53 in 0.50s
+2026-05-09 17:10:11,104 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 57 (priority=2, currPriority=8.60, waited=6.55s)
+2026-05-09 17:10:11,105 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 54 in 0.50s
+2026-05-09 17:10:11,105 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 34 (priority=1, currPriority=8.60, waited=7.61s)
+2026-05-09 17:10:11,106 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 55 in 0.50s
+2026-05-09 17:10:11,106 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 58 (priority=2, currPriority=8.40, waited=6.51s)
+2026-05-09 17:10:11,605 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 57 in 0.50s
+2026-05-09 17:10:11,605 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 59 (priority=2, currPriority=9.00, waited=6.95s)
+2026-05-09 17:10:11,606 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 34 in 0.50s
+2026-05-09 17:10:11,606 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 60 (priority=2, currPriority=9.00, waited=6.90s)
+2026-05-09 17:10:11,606 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 58 in 0.50s
+2026-05-09 17:10:11,606 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 61 (priority=2, currPriority=9.00, waited=6.86s)
+2026-05-09 17:10:12,105 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 59 in 0.50s
+2026-05-09 17:10:12,106 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 62 (priority=2, currPriority=9.20, waited=7.30s)
+2026-05-09 17:10:12,106 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 60 in 0.50s
+2026-05-09 17:10:12,106 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 63 (priority=2, currPriority=9.20, waited=7.25s)
+2026-05-09 17:10:12,107 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 61 in 0.50s
+2026-05-09 17:10:12,107 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 64 (priority=2, currPriority=9.20, waited=7.20s)
+2026-05-09 17:10:12,606 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 62 in 0.50s
+2026-05-09 17:10:12,606 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 65 (priority=2, currPriority=9.80, waited=7.65s)
+2026-05-09 17:10:12,607 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 63 in 0.50s
+2026-05-09 17:10:12,607 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 66 (priority=2, currPriority=9.60, waited=7.60s)
+2026-05-09 17:10:12,607 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 64 in 0.50s
+2026-05-09 17:10:12,607 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 68 (priority=2, currPriority=9.60, waited=7.55s)
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 65 in 0.50s
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 69 (priority=2, currPriority=10.00, waited=8.00s)
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 66 in 0.50s
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 70 (priority=2, currPriority=10.00, waited=7.95s)
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 68 in 0.50s
+2026-05-09 17:10:13,107 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 45 (priority=1, currPriority=10.00, waited=9.11s)
+2026-05-09 17:10:13,607 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 69 in 0.50s
+2026-05-09 17:10:13,607 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 71 (priority=2, currPriority=10.40, waited=8.40s)
+2026-05-09 17:10:13,607 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 45 in 0.50s
+2026-05-09 17:10:13,608 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 70 in 0.50s
+2026-05-09 17:10:13,608 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 73 (priority=2, currPriority=10.40, waited=8.30s)
+2026-05-09 17:10:13,608 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 72 (priority=2, currPriority=10.40, waited=8.35s)
+2026-05-09 17:10:14,107 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 71 in 0.50s
+2026-05-09 17:10:14,108 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 74 (priority=2, currPriority=10.80, waited=8.75s)
+2026-05-09 17:10:14,108 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 73 in 0.50s
+2026-05-09 17:10:14,108 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 75 (priority=2, currPriority=10.60, waited=8.71s)
+2026-05-09 17:10:14,108 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 72 in 0.50s
+2026-05-09 17:10:14,109 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 76 (priority=2, currPriority=10.60, waited=8.65s)
+2026-05-09 17:10:14,608 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 74 in 0.50s
+2026-05-09 17:10:14,608 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 77 (priority=2, currPriority=11.20, waited=9.10s)
+2026-05-09 17:10:14,609 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 75 in 0.50s
+2026-05-09 17:10:14,609 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 79 (priority=2, currPriority=11.20, waited=9.05s)
+2026-05-09 17:10:14,609 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 76 in 0.50s
+2026-05-09 17:10:14,609 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 56 (priority=1, currPriority=11.20, waited=10.11s)
+2026-05-09 17:10:15,108 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 77 in 0.50s
+2026-05-09 17:10:15,108 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 80 (priority=2, currPriority=11.40, waited=9.50s)
+2026-05-09 17:10:15,109 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 79 in 0.50s
+2026-05-09 17:10:15,109 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 56 in 0.50s
+2026-05-09 17:10:15,109 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 81 (priority=2, currPriority=11.40, waited=9.46s)
+2026-05-09 17:10:15,110 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 82 (priority=2, currPriority=11.40, waited=9.41s)
+2026-05-09 17:10:15,609 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 80 in 0.50s
+2026-05-09 17:10:15,609 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 83 (priority=2, currPriority=12.00, waited=9.85s)
+2026-05-09 17:10:15,610 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 81 in 0.50s
+2026-05-09 17:10:15,610 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 84 (priority=2, currPriority=11.80, waited=9.81s)
+2026-05-09 17:10:15,610 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 82 in 0.50s
+2026-05-09 17:10:15,610 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 85 (priority=2, currPriority=11.80, waited=9.76s)
+2026-05-09 17:10:16,109 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 83 in 0.50s
+2026-05-09 17:10:16,109 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 86 (priority=2, currPriority=12.20, waited=10.20s)
+2026-05-09 17:10:16,110 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 84 in 0.50s
+2026-05-09 17:10:16,110 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 85 in 0.50s
+2026-05-09 17:10:16,111 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 87 (priority=2, currPriority=12.20, waited=10.16s)
+2026-05-09 17:10:16,111 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 88 (priority=2, currPriority=12.00, waited=10.10s)
+2026-05-09 17:10:16,609 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 86 in 0.50s
+2026-05-09 17:10:16,610 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 90 (priority=2, currPriority=12.60, waited=10.55s)
+2026-05-09 17:10:16,611 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 87 in 0.50s
+2026-05-09 17:10:16,611 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 91 (priority=2, currPriority=12.60, waited=10.51s)
+2026-05-09 17:10:16,611 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 88 in 0.50s
+2026-05-09 17:10:16,611 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 92 (priority=2, currPriority=12.60, waited=10.46s)
+2026-05-09 17:10:17,110 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 90 in 0.50s
+2026-05-09 17:10:17,110 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 67 (priority=1, currPriority=13.00, waited=12.11s)
+2026-05-09 17:10:17,111 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 91 in 0.50s
+2026-05-09 17:10:17,111 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 93 (priority=2, currPriority=12.80, waited=10.91s)
+2026-05-09 17:10:17,111 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 92 in 0.50s
+2026-05-09 17:10:17,112 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 94 (priority=2, currPriority=12.80, waited=10.86s)
+2026-05-09 17:10:17,610 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 67 in 0.50s
+2026-05-09 17:10:17,610 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 95 (priority=2, currPriority=13.40, waited=11.30s)
+2026-05-09 17:10:17,612 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 93 in 0.50s
+2026-05-09 17:10:17,612 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 96 (priority=2, currPriority=13.40, waited=11.26s)
+2026-05-09 17:10:17,612 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 94 in 0.50s
+2026-05-09 17:10:17,612 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 97 (priority=2, currPriority=13.20, waited=11.21s)
+2026-05-09 17:10:18,110 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 95 in 0.50s
+2026-05-09 17:10:18,111 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 98 (priority=2, currPriority=13.60, waited=11.65s)
+2026-05-09 17:10:18,112 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 96 in 0.50s
+2026-05-09 17:10:18,112 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 99 (priority=2, currPriority=13.60, waited=11.60s)
+2026-05-09 17:10:18,112 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 97 in 0.50s
+2026-05-09 17:10:18,112 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 101 (priority=2, currPriority=13.60, waited=11.55s)
+2026-05-09 17:10:18,611 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 98 in 0.50s
+2026-05-09 17:10:18,611 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 78 (priority=1, currPriority=14.20, waited=13.11s)
+2026-05-09 17:10:18,612 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 99 in 0.50s
+2026-05-09 17:10:18,612 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 102 (priority=2, currPriority=14.00, waited=12.00s)
+2026-05-09 17:10:18,612 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 101 in 0.50s
+2026-05-09 17:10:18,613 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 103 (priority=2, currPriority=14.00, waited=11.95s)
+2026-05-09 17:10:19,111 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 78 in 0.50s
+2026-05-09 17:10:19,112 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 104 (priority=2, currPriority=14.40, waited=12.40s)
+2026-05-09 17:10:19,113 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 102 in 0.50s
+2026-05-09 17:10:19,113 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 105 (priority=2, currPriority=14.40, waited=12.35s)
+2026-05-09 17:10:19,113 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 103 in 0.50s
+2026-05-09 17:10:19,113 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 106 (priority=2, currPriority=14.20, waited=12.30s)
+2026-05-09 17:10:19,612 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 104 in 0.50s
+2026-05-09 17:10:19,612 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 107 (priority=2, currPriority=14.80, waited=12.75s)
+2026-05-09 17:10:19,613 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 105 in 0.50s
+2026-05-09 17:10:19,613 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 108 (priority=2, currPriority=14.80, waited=12.70s)
+2026-05-09 17:10:19,613 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 106 in 0.50s
+2026-05-09 17:10:19,613 | INFO     | worker | WorkerThread-3 | Worker 3 processing job 109 (priority=2, currPriority=14.80, waited=12.65s)
+2026-05-09 17:10:20,112 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 107 in 0.50s
+2026-05-09 17:10:20,112 | INFO     | worker | WorkerThread-2 | Worker 2 processing job 89 (priority=1, currPriority=15.00, waited=14.11s)
+2026-05-09 17:10:20,113 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 108 in 0.50s
+2026-05-09 17:10:20,113 | INFO     | worker | WorkerThread-1 | Worker 1 processing job 100 (priority=1, currPriority=14.60, waited=13.61s)
+2026-05-09 17:10:20,113 | INFO     | worker | WorkerThread-3 | Worker 3 finished job 109 in 0.50s
+2026-05-09 17:10:20,613 | INFO     | worker | WorkerThread-2 | Worker 2 finished job 89 in 0.50s
+2026-05-09 17:10:20,614 | INFO     | worker | WorkerThread-1 | Worker 1 finished job 100 in 0.50s
