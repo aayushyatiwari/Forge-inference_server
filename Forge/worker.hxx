@@ -16,10 +16,12 @@ public:
     const llama_vocab* vocab;
     int n_predict = 1028;
     
-    Worker (Scheduler& s, llama_model* m, llama_context* c) : sch(s) , model(m), context(c) {
+    Worker(Scheduler& s, llama_model* m) : sch(s), model(m) {
+        assert(model != nullptr);
+        llama_context_params cparams = llama_context_default_params();
+        context = llama_init_from_model(model, cparams);
+        assert(context != nullptr);
         vocab = llama_model_get_vocab(model);
-        assert(model!=nullptr);
-        assert(context!=nullptr);
     }
 
     void run() {
@@ -115,6 +117,9 @@ public:
         // 4. return result string
         llama_sampler_free(smpl);
         return result;
+    }
+    ~Worker() {
+        llama_free(context);
     }
 
 };

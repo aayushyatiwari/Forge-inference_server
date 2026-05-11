@@ -22,15 +22,15 @@ public:
     std::vector<std::thread> threads;
     Scheduler& sch;
     llama_model* model;
-    llama_context* context;
-    Server(int p, Scheduler& s, llama_model* m, llama_context* ctx, int n = 4)
-        : port(p), sch(s), model(m), context(ctx), nWorkers(n) {}
+    // llama_context* context;
+    Server(int p, Scheduler& s, llama_model* m, int n = 4)
+        : port(p), sch(s), model(m), nWorkers(n) {}
 
     void start() {
 
         // creating nWorker threads
         for (int i = 0; i < nWorkers; i++) {
-            workers.emplace_back(std::make_unique<Worker>(sch, model, context));
+            workers.emplace_back(std::make_unique<Worker>(sch, model));
             threads.emplace_back(&Worker::run, workers.back().get());
         }
 
