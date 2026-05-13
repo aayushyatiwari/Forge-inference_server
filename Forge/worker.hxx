@@ -52,6 +52,7 @@ public:
     }
 
  std::string runInference (const std::string& prompt) {
+        llama_memory_clear(llama_get_memory(context), true);
         std::string result;
 
         // 1. tokenize

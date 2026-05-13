@@ -61,57 +61,57 @@ public:
         }
     }
 
-    // handle POST /infer
-    void handleClient(int client_fd) {
-        char buf [ 4096]= {0} ; // buffer for result
+    // // handle POST /infer
+    // void handleClient(int client_fd) {
+    //     char buf [ 4096]= {0} ; // buffer for result
 
-        // read reqest
-        int bytes = recv(client_fd, buf, sizeof(buf), 0);
-        if (bytes < 0) {close(client_fd);return;}
+    //     // read reqest
+    //     int bytes = recv(client_fd, buf, sizeof(buf), 0);
+    //     if (bytes < 0) {close(client_fd);return;}
 
-        std::string request (buf, bytes);
+    //     std::string request (buf, bytes);
 
-        if (request.find("POST /infer") != std::string::npos) {
-            std::cout << request << "\n";
-            size_t pos = request.find("\r\n\r\n");
-            if (pos == std::string::npos) {
-                close(client_fd);
-                return;
-            }
-            std::string body = request.substr(pos+4);
-            auto j = nlohmann::json::parse(body);
-            std::string query = j["query"];
+    //     if (request.find("POST /infer") != std::string::npos) {
+    //         std::cout << request << "\n";
+    //         size_t pos = request.find("\r\n\r\n");
+    //         if (pos == std::string::npos) {
+    //             close(client_fd);
+    //             return;
+    //         }
+    //         std::string body = request.substr(pos+4);
+    //         auto j = nlohmann::json::parse(body);
+    //         std::string query = j["query"];
 
-            // create a new job with query
-            auto job = std::make_unique<Job> (); // create a new empty job unique_ptr
-            // set job data
-            job->query = query;
-            job->p = std::make_shared<std::promise<std::string>> ();// do we need this?
-            job->startTime = std::chrono::steady_clock::now();
-            auto future = job->p->get_future(); 
-            // the detached thread holds the future, the worker thread fulfills the promise. by job->p->set_value(result);
-            // Two different threads, one communication channel.
-            sch.enque(std::move(job));
-            // wait here....
-            std::string result = future.get();
-            result += "\n";
-            std::string response =
-                "HTTP/1.1 200 OK\r\n"
-                "Content-Type: application/json\r\n"
-                "Content-Length: " + std::to_string(result.size()) + "\r\n"
-                "\r\n" +
-                result;
+    //         // create a new job with query
+    //         auto job = std::make_unique<Job> (); // create a new empty job unique_ptr
+    //         // set job data
+    //         job->query = query;
+    //         job->p = std::make_shared<std::promise<std::string>> ();// do we need this?
+    //         job->startTime = std::chrono::steady_clock::now();
+    //         auto future = job->p->get_future(); 
+    //         // the detached thread holds the future, the worker thread fulfills the promise. by job->p->set_value(result);
+    //         // Two different threads, one communication channel.
+    //         sch.enque(std::move(job));
+    //         // wait here....
+    //         std::string result = future.get();
+    //         result += "\n";
+    //         std::string response =
+    //             "HTTP/1.1 200 OK\r\n"
+    //             "Content-Type: application/json\r\n"
+    //             "Content-Length: " + std::to_string(result.size()) + "\r\n"
+    //             "\r\n" +
+    //             result;
 
-            send(client_fd, response.c_str(), response.size(), 0);
-            close(client_fd);
+    //         send(client_fd, response.c_str(), response.size(), 0);
+    //         close(client_fd);
 
-            } else if (request.find("GET /metrics") != std::string::npos) {
-                handleMetrics(client_fd);
-                return;
-            } else {
-                close(client_fd);
-            }
-        }
+    //         } else if (request.find("GET /metrics") != std::string::npos) {
+    //             handleMetrics(client_fd);
+    //             return;
+    //         } else {
+    //             close(client_fd);
+    //         }
+    //     }
 
     // handle POST /metrics
     void handleMetrics(int client_fd) {
@@ -134,6 +134,61 @@ public:
         close(client_fd);
     }
 
+    void handleClient(int client_fd) {
+        char buf[4096] = {0};
+        int bytes = recv(client_fd, buf, sizeof(buf), 0);
+        if (bytes < 0) { close(client_fd); return; }
+
+        std::string request(buf, bytes);
+
+        if (request.find("GET /metrics") != std::string::npos) {
+            handleMetrics(client_fd);
+            return;
+        }
+
+        if (request.find("POST /infer") != std::string::npos) {
+            size_t pos = request.find("\r\n\r\n");
+            if (pos == std::string::npos) { close(client_fd); return; }
+
+            std::string body = request.substr(pos + 4);
+
+            try {
+                auto j = nlohmann::json::parse(body);
+                std::string query = j["query"];
+
+                auto job = std::make_unique<Job>();
+                job->query = query;
+                job->p = std::make_shared<std::promise<std::string>>();
+                job->startTime = std::chrono::steady_clock::now();
+                auto future = job->p->get_future();
+                sch.enque(std::move(job));
+
+                std::string result = future.get();
+                nlohmann::json resp;
+                resp["response"] = result;
+                std::string json_body = resp.dump();
+                std::string response =
+                    "HTTP/1.1 200 OK\r\n"
+                    "Content-Type: application/json\r\n"
+                    "Content-Length: " + std::to_string(json_body.size()) + "\r\n"
+                    "\r\n" + json_body;
+                send(client_fd, response.c_str(), response.size(), 0);
+            } catch (...) {
+                std::string err = "{\"error\":\"bad request\"}";
+                std::string response =
+                    "HTTP/1.1 400 Bad Request\r\n"
+                    "Content-Type: application/json\r\n"
+                    "Content-Length: " + std::to_string(err.size()) + "\r\n"
+                    "\r\n" + err;
+                send(client_fd, response.c_str(), response.size(), 0);
+            }
+
+            close(client_fd);
+            return;
+        }
+
+        close(client_fd);
+    }
     ~Server() {
         for (auto& t : threads) {
             if (t.joinable()) t.join();
