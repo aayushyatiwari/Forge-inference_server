@@ -1,142 +1,42 @@
-# Forge — An Inference Server Built From Scratch
+# Forge: High-Performance Inference Server Workspace
 
-This repo is a 4-project arc in systems engineering. Each project builds on the last, starting from raw TCP sockets in Python and ending with a working C++ inference server backed by llama.cpp.
+This workspace contains a series of server implementations built from scratch, evolving from a simple toy HTTP server to a sophisticated C++ inference server with job scheduling and priority management.
 
-No frameworks. Every abstraction earned.
+## Project Structure
 
----
+The workspace is divided into three main components:
 
-## The Arc
+### 1. [Bongo](./bongo) - Toy HTTP Server Implementations
+A collection of Python-based HTTP servers built using raw sockets. It explores different concurrency models:
+- **Dumb Server**: Single-threaded, blocking server for learning the basics of HTTP over TCP.
+- **Threaded Server**: Multi-threaded approach using Python's `threading` module.
+- **Async Server**: High-concurrency implementation using `asyncio`.
 
-### Project 1 — Bongo (Python)
-A raw HTTP server using only sockets. No frameworks. Accepts `POST` with JSON, returns JSON.
+**Key Benchmarks (POST /reverse):**
+| Implementation | Latency (Avg) | Req/Sec |
+| :--- | :--- | :--- |
+| Thread-based | 60.09 ms | 1,649.56 |
+| Asyncio-based | 15.87 ms | 11,326.42 |
 
-Learned: HTTP is text over TCP. `recv()` gives raw bytes. Headers and body split on `\r\n\r\n`.
+### 2. [Queue](./queue) - Priority Job Scheduler
+A standalone Python implementation of a priority-based job scheduling system. It features:
+- **Priority Queueing**: Urgent jobs vs. Batch jobs.
+- **Aging Mechanism**: A dedicated thread that prevents starvation by gradually increasing the priority of long-waiting jobs.
+- **Thread-Safety**: Robust locking for concurrent job submission and worker processing.
 
-### Project 2 — Concurrent Bongo (Python)
-Threaded and async versions of Bongo. Benchmarked with `wrk` at 1000 connections. Async won on throughput and latency.
+### 3. [Forge](./Forge) - C++ LLM Inference Server
+The capstone project combining high-performance C++ networking with LLM inference.
+- **Architecture**: Separates network handling (detached threads) from compute (worker thread pool) using a scheduler and promise/future bridge.
+- **LLM Integration**: Uses `llama.cpp` to serve Llama-3.2-1B-Instruct.
+- **Metrics**: Integrated tracking for queue depth and p99 latency.
 
-Learned: thread-per-connection vs event loop tradeoffs. Where blocking I/O hurts.
+**Inference Benchmarks (Llama-3.2-1B):**
+- **Avg Latency**: 8.81s
+- **P99 Latency**: 12.29s
+- **Throughput**: ~0.20 Req/Sec (Model-bound)
 
-### Project 3 — Priority Job Scheduler (Python)
-A priority queue job scheduler. Jobs tagged `urgent` (priority=2) or `batch` (priority=1). Workers pull jobs in priority order.
-
-Intentionally induced starvation — flooded with urgent jobs, watched batch jobs wait 5-7 seconds. Fixed with aging — a background thread boosts `currPriority` over time.
-
-Learned: `heapq`, `threading.Lock`, `threading.Thread`. Observed starvation and aging in logs.
-
-### Project 4 — Forge (C++)
-A full inference server in C++. Every piece from Projects 1-3 rebuilt and wired to a real LLM via llama.cpp.
-
----
-
-## Forge Architecture
-
-```
-HTTP Request
-    │
-    ▼
-Server (raw socket, accept loop)
-    │
-    ▼
-handleClient() — parses HTTP, creates Job
-    │
-    ├── Job { id, query, st, et, oldPriority, currPriority, promise }
-    │
-    ▼
-Scheduler (thread-safe priority queue)
-    ├── std::priority_queue<unique_ptr<Job>>
-    ├── std::condition_variable — workers sleep until job arrives
-    └── aging thread — boosts currPriority every second
-    │
-    ▼
-Worker threads (4 by default)
-    ├── wait on condition variable
-    ├── dequeue top job
-    ├── runInference(query) → llama.cpp
-    └── promise.set_value(result) — unblocks HTTP handler
-    │
-    ▼
-HTTP Response
-```
-
-**Promise/Future per request:** the HTTP handler creates a `std::promise`, passes it with the Job, then blocks on `future.get()`. The worker fulfills the promise after inference. Zero polling.
+## Benchmarking Tools
+We use `wrk` for load testing across all projects. Custom Lua scripts (e.g., `post.lua`) are used to benchmark POST endpoints with JSON payloads.
 
 ---
-
-## File Structure
-
-```
-Forge/
-├── main.cpp          — model loading, wires Scheduler + Server
-├── job.hxx           — Job struct
-├── scheduler.hxx     — priority queue, aging, condition variable
-├── worker.hxx        — worker threads, llama.cpp inference
-├── http.hxx          — raw socket HTTP server, /infer, /metrics
-└── CMakeLists.txt
-```
-
----
-
-## Building
-
-**Dependencies:**
-- llama.cpp (built from source)
-- nlohmann/json (header-only)
-- A GGUF model file
-
-**Build llama.cpp:**
-```bash
-git clone https://github.com/ggml-org/llama.cpp
-cd llama.cpp
-cmake -B build
-cmake --build build --config Release -j4
-```
-
-**Download a model:**
-```bash
-wget https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf
-```
-
-**Update paths in CMakeLists.txt** to point to your llama.cpp install and `libllama.so`.
-
-**Update model path in main.cpp.**
-
-**Build Forge:**
-```bash
-cd Forge
-mkdir build && cd build
-cmake ..
-make
-./forge
-```
-
----
-
-## Usage
-
-**Inference:**
-```bash
-curl -X POST http://localhost:8080/infer \
-  -H "Content-Type: application/json" \
-  -d '{"query": "what is 2+2?"}'
-```
-
-**Metrics:**
-```bash
-curl http://localhost:8080/metrics
-# {"queue_depth": 0, "p99_latency_ms": 1047.0}
-```
-
----
-
-## C++ Primitives Used
-
-- `std::unique_ptr` + `std::move` — ownership transfer, no manual memory management
-- `std::shared_ptr` — shared ownership for promise across Job and HTTP handler
-- `std::mutex` + `std::lock_guard` — RAII mutex locking
-- `std::condition_variable` — workers sleep until job arrives, zero CPU spin
-- `std::atomic<bool>` — thread-safe shutdown flag
-- `std::thread` — worker threads and aging loop
-- `std::promise` / `std::future` — connect HTTP handler to worker result
-- `std::priority_queue` with custom comparator — priority scheduling
+*Created as part of the Forge systems programming series.*

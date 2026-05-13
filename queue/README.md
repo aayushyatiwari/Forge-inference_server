@@ -1,27 +1,28 @@
-# Queue Component
+# Queue
 
-A priority-based job scheduling system with an aging mechanism to prevent starvation.
-
-## Components
-
-- **`job.py`**: Defines the `Job` class, which encapsulates task data, priority (2 for urgent, 1 for batch), and timing metadata.
-- **`scheduler.py`**: Implements a thread-safe `Scheduler` using a priority queue (heap). Includes an aging thread that gradually increases the priority of waiting jobs to ensure eventual execution.
-- **`worker.py`**: Contains the worker logic that retrieves and processes jobs from the scheduler.
-- **`main.py`**: The entry point that initializes the scheduler, starts multiple worker threads, and simulates an incoming stream of jobs.
+A robust priority-based job scheduling system implemented in Python. This component focuses on the logic of managing task execution orders and ensuring fairness in a multi-worker environment.
 
 ## Features
 
-- **Priority Scheduling**: Urgent jobs are prioritized over batch jobs.
-- **Starvation Prevention**: The aging mechanism ensures that low-priority jobs don't wait indefinitely.
-- **Thread-Safe**: Uses locks to manage concurrent access to the job queue.
-- **Detailed Logging**: Tracks job lifecycle from creation to completion, including wait and processing times.
+- **Priority Levels**: Support for "Urgent" (Priority 2) and "Batch" (Priority 1) jobs.
+- **Aging Mechanism**: A background thread monitors the queue and "ages" jobs. If a batch job waits too long, its priority is boosted to prevent it from being starved by a constant stream of urgent jobs.
+- **Thread-Safe Scheduler**: Uses a `heapq` based priority queue protected by `threading.Lock` and `threading.Condition`.
+- **Worker Pool**: Multiple worker threads simulate concurrent processing of jobs.
+
+## Components
+
+- `job.py`: Data structure for tasks.
+- `scheduler.py`: The core scheduling logic and aging thread.
+- `worker.py`: Worker logic that consumes jobs.
+- `main.py`: Simulation entry point.
+
+## Logic: Aging vs Starvation
+
+Without aging, a flood of Priority 2 jobs would mean Priority 1 jobs never run. The aging thread ensures that every job eventually gets processed by boosting the priority of older jobs after a configurable timeout (e.g., 30 seconds).
 
 ## Usage
 
-To run the simulation:
-
+Run the simulation and check `forge.log` for execution order:
 ```bash
 python main.py
 ```
-
-Logs will be written to `forge.log` and printed to the console.

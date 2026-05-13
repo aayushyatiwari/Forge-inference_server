@@ -108,13 +108,14 @@ public:
             auto job = std::make_unique<Job> ();
             job->query = query;
             job->oldPriority = 1;
-            job->currPriority = 1;
+            job->currPriority= 1;
             job->p = std::make_shared<std::promise<std::string>>();
             job->startTime = std::chrono::steady_clock::now();
             auto future = job->p->get_future();
             sch.enqueue(std::move(job));
             //wait
             std::string result = future.get();
+            result+="\n";
 
             std::string response =
                 "HTTP/1.1 200 OK\r\n"
@@ -136,7 +137,10 @@ public:
         std::lock_guard<std::mutex> lock(sch.m);
         std::vector<float> sorted = sch.latencies;
         std::sort(sorted.begin(), sorted.end());
-        float p99 = sorted[0.99 * sorted.size()];
+        float p99 = 0.0f;
+        if (!sorted.empty()) {
+            p99 = sorted[(int)(0.99 * sorted.size())];
+        }
         nlohmann::json j;
         j["queue_depth"] = sch.p.size();
         j["p99_latency_ms"] = p99;

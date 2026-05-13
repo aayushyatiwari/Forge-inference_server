@@ -38,6 +38,7 @@ public:
             ).count();
             std::lock_guard<std::mutex> lk(sch.m);
             sch.latencies.push_back(latency);
+            // std::cout<< "latency pushed: " << latency << "ms" << std::endl;
         }
     }
     std::string runInference (const std::string& prompt) {
