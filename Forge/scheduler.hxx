@@ -26,7 +26,8 @@ public:
     std::atomic<bool> shutdown;
     float aging_rate = 0.2;
     std::condition_variable cv; // what if the scheduler is empty? how to reduce CPU load?
-    std::vector<float> latencies;
+    std::deque<float> latencies;
+    std::int32_t MAX_QUEUE_SIZE = 1024;
 
     Scheduler() {
         shutdown = false;

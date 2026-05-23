@@ -46,6 +46,7 @@ public:
 
                 std::lock_guard<std::mutex> lock_metrics(sch.m);
                 sch.latencies.push_back(latency);
+                if (sch.latencies.size() > sch.MAX_QUEUE_SIZE) sch.latencies.pop_front();
             }
         }
 
