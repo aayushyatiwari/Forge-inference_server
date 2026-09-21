@@ -143,7 +143,6 @@ wrk -t4 -c16 -d30s -s post.lua http://localhost:8080/infer
 
 This is a learning project, not production software. Current rough edges:
 
-- Build artifacts (`build/`) and `server.log` are currently tracked in git.
 - HTTP parsing is minimal: requests are matched by substring and assumed to arrive in a
   single 4 KB `recv`, so bodies larger than that are truncated.
 - `bind` and `listen` return values are not checked.

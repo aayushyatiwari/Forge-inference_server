@@ -1,3 +1,0 @@
-/home/imaayush/code/ForgeCopy/build/CMakeFiles/forge.dir
-/home/imaayush/code/ForgeCopy/build/CMakeFiles/edit_cache.dir
-/home/imaayush/code/ForgeCopy/build/CMakeFiles/rebuild_cache.dir
