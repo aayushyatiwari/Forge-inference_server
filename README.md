@@ -45,14 +45,24 @@ A request's lifetime:
 
 ## Configuration
 
-Two paths must be set before the project will build and run:
+All paths are resolved at configure time — nothing needs editing by hand.
 
-| What | Where | Notes |
+| Option | Default | Purpose |
 | --- | --- | --- |
-| Model path | `MODEL_PATH` in `main.cpp` | Empty by default; the server exits with an error if unset. |
-| `llama.cpp` location | `target_include_directories` / `target_link_libraries` in `CMakeLists.txt` | Currently absolute paths; point them at your own checkout. |
+| `LLAMA_CPP_DIR` | sibling `../llama.cpp`, else `LLAMA_CPP_DIR` from the environment | Where to find `llama.h` and `libllama`. Searches an in-tree build (`build/bin`), an installed prefix, and system paths. |
+| `FORGE_MODEL_PATH` | unset | Bakes the GGUF path in as `MODEL_PATH`. If unset, the server exits at startup with a message. |
+| `NLOHMANN_JSON_INCLUDE_DIR` | auto-detected | Only needed if `nlohmann/json` is installed somewhere non-standard. |
 
-Server defaults are set at construction in `main.cpp`:
+```bash
+cmake -B build \
+  -DLLAMA_CPP_DIR=/path/to/llama.cpp \
+  -DFORGE_MODEL_PATH=/path/to/Llama-3.2-1B-Instruct-Q4_K_M.gguf
+```
+
+Configuration fails early with an explanatory message if `llama.cpp` or
+`nlohmann/json` cannot be found.
+
+Server defaults are still set at construction in `main.cpp`:
 
 | Setting | Default | Defined in |
 | --- | --- | --- |
@@ -67,6 +77,8 @@ Server defaults are set at construction in `main.cpp`:
 cmake -B build
 cmake --build build
 ```
+
+With `llama.cpp` checked out next to this repo, that is the whole build.
 
 ## Run
 
