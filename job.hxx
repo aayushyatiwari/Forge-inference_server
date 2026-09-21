@@ -12,8 +12,8 @@ struct Job {
     std::chrono::steady_clock::time_point startTime;
     std::chrono::steady_clock::time_point endTime;
 
-    int currPriority = 1;
-    int initPriority = 1;
+    float currPriority = 1;
+    float initPriority = 1;
     std::shared_ptr<std::promise<std::string>> p;
 
 };

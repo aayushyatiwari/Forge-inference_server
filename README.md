@@ -79,8 +79,8 @@ cmake --build build
 
 | Method | Endpoint | Body | Response |
 | --- | --- | --- | --- |
-| `POST` | `/infer` | `{"query": "..."}` | Generated text |
-| `GET` | `/metrics` | — | `{"p99_latency_ms": <float>}` |
+| `POST` | `/infer` | `{"query": "..."}` | `200` `{"response": "<generated text>"}`, or `400` `{"error":"bad request"}` on an unparseable body |
+| `GET` | `/metrics` | — | `200` `{"p99_latency_ms": <float>}` |
 
 ```bash
 curl -X POST http://localhost:8080/infer -d '{"query": "Hello, how are you?"}'
@@ -120,20 +120,22 @@ wrk -t4 -c16 -d30s -s post.lua http://localhost:8080/infer
 - **One context per worker.** Each `Worker` creates its own `llama_context` from the
   shared `llama_model` and frees it in its destructor, so contexts are never shared
   between threads.
+- **Per-request KV cache reset.** `runInference` calls `llama_memory_clear` before
+  tokenizing. Because a worker reuses one context across jobs, skipping this would let
+  the previous request's KV cache condition the next request's output.
+- **Bounded latency buffer.** `Scheduler::latencies` is a `std::deque<float>` trimmed to
+  `MAX_QUEUE_SIZE` (1024) samples, so metrics memory stays flat over a long-running
+  process rather than growing per request.
 
 ## Status and known limitations
 
 This is a learning project, not production software. Current rough edges:
 
-- **The tree does not compile as-is.** `server.hxx` and `worker.hxx` reference
-  `sch.latencies`, but `Scheduler` declares no such member; it needs a
-  `std::vector<float> latencies` guarded by the existing mutex.
-- **Aging is a no-op.** `aging_rate` is a `float` (`0.2`) added to an `int`
-  `currPriority`, so the increment truncates to zero. Either make the priority
-  fractional or use an integer step.
 - Build artifacts (`build/`) and `server.log` are currently tracked in git.
-- HTTP parsing is minimal: requests are matched by substring, assumed to arrive in a
-  single 4 KB `recv`, and malformed JSON is not handled.
+- HTTP parsing is minimal: requests are matched by substring and assumed to arrive in a
+  single 4 KB `recv`, so bodies larger than that are truncated.
 - `bind` and `listen` return values are not checked.
 - There is no request timeout, backpressure, or graceful shutdown path for the server
   accept loop.
+- The p99 figure is computed over the most recent 1024 samples only, by nearest-rank on
+  a sorted copy taken under the scheduler mutex.

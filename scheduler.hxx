@@ -3,6 +3,7 @@
 
 #include "job.hxx"
 #include <queue>
+#include <deque>
 #include <thread>
 #include <mutex>
 #include <atomic>
@@ -24,6 +25,8 @@ public:
     std::atomic<bool> shutdown;
     float aging_rate = 0.2;
     std::condition_variable cv;
+    std::deque<float> latencies;
+    std::size_t MAX_QUEUE_SIZE = 1024;
 
     Scheduler() {
         shutdown = false;
@@ -59,6 +62,7 @@ public:
     }
 
     std::unique_ptr<Job> deque() {
+        // deadlock method: cicular wait for lock
         std::lock_guard<std::mutex> lock(m);
         if (q.empty()) {
             return nullptr;
@@ -70,6 +74,7 @@ public:
     }
 
     std::unique_ptr<Job> deque_locked() {
+    // actual deadlock method used
         if (q.empty()) {
             return nullptr;
         } else {
