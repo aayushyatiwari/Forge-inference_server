@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/forge.dir/main.cpp.o -o forge  -Wl,-rpath,/home/imaayush/code/llama.cpp/build/bin /home/imaayush/code/llama.cpp/build/bin/libllama.so -lpthread 
