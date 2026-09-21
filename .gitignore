@@ -1,0 +1,10 @@
+
+# local build 
+build/
+
+# server logs
+*.log
+
+# env
+*.env
+
