@@ -83,9 +83,14 @@ With `llama.cpp` checked out next to this repo, that is the whole build.
 ## Run
 
 ```bash
-./build/forge
+./build/forge                       # uses FORGE_MODEL_PATH baked in at configure time
+./build/forge /path/to/model.gguf   # or pass the model at runtime
+FORGE_MODEL_PATH=/path/to/model.gguf ./build/forge
 # server listening on port: 8080
 ```
+
+Precedence: command-line argument, then the `FORGE_MODEL_PATH` environment variable,
+then the configure-time default.
 
 ## API
 
